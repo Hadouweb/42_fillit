@@ -46,9 +46,3 @@ void	ft_print_map(char **map)
 	}
 	ft_putchar('\n');
 }
-
-void	ft_print_error(void)
-{
-	ft_putstr("error\n");
-	exit(1);
-}

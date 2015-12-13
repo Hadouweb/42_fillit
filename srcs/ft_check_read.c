@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: nle-bret <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/03 02:54:12 by nle-bret          #+#    #+#             */
-/*   Updated: 2015/12/07 22:04:40 by hdebard          ###   ########.fr       */
+/*   Created: 2015/12/13 23:11:37 by nle-bret          #+#    #+#             */
+/*   Updated: 2015/12/13 23:11:51 by nle-bret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,22 +41,28 @@ char			**ft_generate_tetri(char *buf)
 
 int				ft_is_tetri(char **tetri, int y, int x)
 {
-	if (tetri[y][x] == '#' &&
-			!((x < 4 && tetri[y][x + 1] == '#')
-				|| (x > 0 && tetri[y][x - 1] == '#')
-				|| (y < 3 && tetri[y + 1][x] == '#')
-				|| (y > 0 && tetri[y - 1][x] == '#')))
-		return (0);
-	return (1);
+	if (x >= 0 && x < 5 && y >= 0 && y < 4)
+	{
+		if ('#' == tetri[y][x])
+		{
+			tetri[y][x] = '.';
+			return (1
+					+ ft_is_tetri(tetri, y + 1, x)
+					+ ft_is_tetri(tetri, y - 1, x)
+					+ ft_is_tetri(tetri, y, x - 1)
+					+ ft_is_tetri(tetri, y, x + 1));
+		}
+		else
+			return (0);
+	}
+	return (0);
 }
 
 int				ft_check_tetri(char *buf)
 {
 	t_incre	p;
-	t_pos	*pos;
 	char	**tetri;
 
-	pos = ft_save_pos(buf);
 	tetri = ft_generate_tetri(buf);
 	p.count = 0;
 	p.y = -1;
@@ -65,18 +71,20 @@ int				ft_check_tetri(char *buf)
 		p.x = 0;
 		while (p.x < 5)
 		{
-			if (!ft_is_tetri(tetri, p.y, p.x))
-				return (0);
-			else if (tetri[p.y][p.x] == '#')
-				p.count++;
+			if (tetri[p.y][p.x] == '#')
+			{
+				p.count = p.count + ft_is_tetri(tetri, p.y, p.x);
+				if (p.count < 4)
+					return (0);
+			}
 			p.x++;
 		}
 	}
-	if (p.count != 4)
-		return (0);
 	free(tetri);
-	free(pos);
-	return (1);
+	if (p.count == 4)
+		return (1);
+	else
+		return (0);
 }
 
 int				ft_check_file(char *buf)
@@ -108,21 +116,8 @@ int				ft_check_file(char *buf)
 	return (1);
 }
 
-int				ft_check_all(char *buf)
+void			ft_print_error(void)
 {
-	int		i;
-	int		count;
-
-	i = 0;
-	count = -1;
-	if (!ft_check_file(buf))
-		return (0);
-	while (buf[i])
-	{
-		i += 21;
-		count++;
-	}
-	if (count > 0 && count < 27)
-		return (1);
-	return (0);
+	ft_putstr("error\n");
+	exit(1);
 }

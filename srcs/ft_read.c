@@ -74,7 +74,7 @@ void	ft_save_tetri(char *buf)
 	i = 0;
 	list = NULL;
 	n = 'A';
-	if (ft_check_all(buf) == 1)
+	if (ft_check_file(buf) == 1)
 	{
 		while (i < ft_strlen(buf))
 		{

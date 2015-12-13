@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: nle-bret <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/02 05:34:28 by nle-bret          #+#    #+#             */
-/*   Updated: 2015/12/02 05:34:31 by nle-bret         ###   ########.fr       */
+/*   Created: 2015/12/13 23:11:07 by nle-bret          #+#    #+#             */
+/*   Updated: 2015/12/13 23:11:17 by nle-bret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int		ft_place_tetri(t_tetri *list, char **map, t_pos p, t_nb nb)
 	}
 	while (map[p.y])
 	{
+		p.x = 0;
 		while (map[p.y][p.x])
 		{
 			if (list && ft_verify_tetri(list, map, p, nb.max))
@@ -63,7 +64,6 @@ int		ft_place_tetri(t_tetri *list, char **map, t_pos p, t_nb nb)
 			}
 			p.x++;
 		}
-		p.x = 0;
 		p.y++;
 	}
 	return (0);
