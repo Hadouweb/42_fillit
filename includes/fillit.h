@@ -6,7 +6,7 @@
 /*   By: nle-bret <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/30 07:37:29 by nle-bret          #+#    #+#             */
-/*   Updated: 2015/12/04 21:20:45 by hdebard          ###   ########.fr       */
+/*   Updated: 2015/12/14 00:00:10 by nle-bret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void				ft_clean_memory(t_tetri **list, char **map);
 
 void				ft_print_map(char **map);
 void				ft_print_pos(t_pos *pos);
+void				ft_print_error(void);
 
 void				ft_add_char(t_tetri *list, char **map, t_pos p);
 int					ft_verify_tetri(t_tetri *list, char **map, t_pos p,
@@ -78,8 +79,8 @@ int					ft_contaminate(char **map, int x, int y, int max);
 
 int					ft_check_file(char *buf);
 int					ft_check_tetri(char *buf);
-void				ft_print_error(void);
 int					ft_is_tetri(char **tetri, int y, int x);
 char				**ft_generate_tetri(char *buf);
+int					ft_check_all(char *buf);
 
 #endif

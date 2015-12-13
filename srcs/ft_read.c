@@ -6,7 +6,7 @@
 /*   By: nle-bret <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/27 06:28:55 by nle-bret          #+#    #+#             */
-/*   Updated: 2015/12/07 21:55:27 by hdebard          ###   ########.fr       */
+/*   Updated: 2015/12/14 00:00:44 by nle-bret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	ft_save_tetri(char *buf)
 	i = 0;
 	list = NULL;
 	n = 'A';
-	if (ft_check_file(buf) == 1)
+	if (ft_check_all(buf) == 1)
 	{
 		while (i < ft_strlen(buf))
 		{

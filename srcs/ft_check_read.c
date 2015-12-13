@@ -6,7 +6,7 @@
 /*   By: nle-bret <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/13 23:11:37 by nle-bret          #+#    #+#             */
-/*   Updated: 2015/12/13 23:11:51 by nle-bret         ###   ########.fr       */
+/*   Updated: 2015/12/14 00:23:55 by nle-bret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,8 +116,25 @@ int				ft_check_file(char *buf)
 	return (1);
 }
 
-void			ft_print_error(void)
+int				ft_check_all(char *buf)
 {
-	ft_putstr("error\n");
-	exit(1);
+	int		i;
+	int		count;
+
+	i = 0;
+	count = 0;
+	if (!ft_check_file(buf))
+		return (0);
+	while (buf[i])
+	{
+		if (i == 0)
+			i += 20;
+		else
+			i += 21;
+		if (buf[i])
+			count++;
+	}
+	if (count > 0 && count < 26)
+		return (1);
+	return (0);
 }
