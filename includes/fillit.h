@@ -18,6 +18,7 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
+# include <stdlib.h>
 # include "libft.h"
 
 typedef struct		s_pos
@@ -62,7 +63,6 @@ void				ft_clean_memory(t_tetri **list, char **map);
 
 void				ft_print_map(char **map);
 void				ft_print_pos(t_pos *pos);
-void				ft_print_error(void);
 
 void				ft_add_char(t_tetri *list, char **map, t_pos p);
 int					ft_verify_tetri(t_tetri *list, char **map, t_pos p,
@@ -78,8 +78,8 @@ int					ft_contaminate(char **map, int x, int y, int max);
 
 int					ft_check_file(char *buf);
 int					ft_check_tetri(char *buf);
+void				ft_print_error(void);
 int					ft_is_tetri(char **tetri, int y, int x);
-int					ft_check_all(char *buf);
 char				**ft_generate_tetri(char *buf);
 
 #endif
